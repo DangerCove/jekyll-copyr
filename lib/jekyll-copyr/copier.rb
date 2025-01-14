@@ -28,8 +28,13 @@ module Jekyll
       private
 
       def process(task)
-        FileUtils.mkdir_p task.to
-        FileUtils.cp_r task.from, task.to
+        if File.file?(task.from)
+          FileUtils.mkdir_p File.dirname(task.from)
+          FileUtils.cp task.from, task.to
+        else
+          FileUtils.mkdir_p task.to
+          FileUtils.cp_r task.from, task.to
+        end
       end
     end
   end
