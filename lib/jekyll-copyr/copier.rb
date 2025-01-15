@@ -29,7 +29,7 @@ module Jekyll
 
       def process(task)
         if File.file?(task.from)
-          FileUtils.mkdir_p File.dirname(task.from)
+          FileUtils.mkdir_p File.dirname(task.to)
           FileUtils.cp task.from, task.to
         else
           FileUtils.mkdir_p task.to
